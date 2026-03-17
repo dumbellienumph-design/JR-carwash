@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JR Car Wash — Premium Auto Detailing, Bloemfontein</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --navy:       #04091a;
+            --navy-mid:   #0a1628;
+            --navy-light: #0f1f3d;
+            --blue:       #0369a1;
+            --blue-bright:#0ea5e9;
+            --cyan:       #06b6d4;
+            --cyan-light: #67e8f9;
+            --white:      #f0f9ff;
+            --white-dim:  rgba(240,249,255,0.65);
+            --glass-bg:   rgba(10,22,40,0.6);
+            --glass-border: rgba(6,182,212,0.2);
+            --shadow-card: 0 8px 32px rgba(0,0,0,0.4), 0 1px 0 rgba(6,182,212,0.1);
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--navy); }
+        ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 3px; }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.4rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(4,9,26,0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.9rem 2.5rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.35);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.25rem; color: white;
+            box-shadow: 0 0 18px rgba(6,182,212,0.5);
+        }
+
+        .nav-logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.55rem;
+            letter-spacing: 0.04em;
+            color: var(--white);
+        }
+        .nav-logo-text span { color: var(--cyan); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white-dim);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.25s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--cyan);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--cyan); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan)) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            box-shadow: 0 0 20px rgba(6,182,212,0.35);
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+        .nav-cta:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 35px rgba(6,182,212,0.6) !important;
+        }
+        .nav-cta::after { display: none !important; }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px; height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        #home {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 18% 55%, rgba(3,105,161,0.38) 0%, transparent 58%),
+                radial-gradient(ellipse at 82% 28%, rgba(6,182,212,0.22) 0%, transparent 48%),
+                radial-gradient(ellipse at 50% 85%, rgba(4,9,26,0.75) 0%, transparent 55%),
+                linear-gradient(180deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy) 100%);
+        }
+
+        .foam-overlay {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(circle at 28% 62%, rgba(255,255,255,0.045) 0%, transparent 38%),
+                radial-gradient(circle at 72% 38%, rgba(6,182,212,0.08) 0%, transparent 34%);
+            animation: foam-shift 9s ease-in-out infinite alternate;
+        }
+        @keyframes foam-shift {
+            0%   { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 1;   transform: scale(1.06); }
+        }
+
+        /* Spray light beams */
+        .spray-wrap {
+            position: absolute; inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .spray-beam {
+            position: absolute;
+            top: -80px;
+            width: 2px; height: 55%;
+            background: linear-gradient(180deg, rgba(6,182,212,0.55) 0%, transparent 100%);
+            filter: blur(5px);
+            animation: spray-fall 3.5s ease-in-out infinite;
+        }
+        .spray-beam:nth-child(1) { left: 22%; animation-delay: 0s; }
+        .spray-beam:nth-child(2) { left: 50%; animation-delay: 0.9s; width: 1.5px; }
+        .spray-beam:nth-child(3) { left: 76%; animation-delay: 1.8s; }
+
+        @keyframes spray-fall {
+            0%,100% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+            25%,75%  { opacity: 1; transform: scaleY(1); transform-origin: top; }
+        }
+
+        /* Bubbles */
+        .bubbles-container {
+            position: absolute; inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28), rgba(6,182,212,0.08));
+            border: 1px solid rgba(6,182,212,0.3);
+            animation: bubble-rise linear infinite;
+        }
+        .bubble:nth-child(1)  { width: 8px;  height:8px;  left:5%;  animation-duration:8s;   animation-delay:0s;    bottom:-20px; }
+        .bubble:nth-child(2)  { width:14px;  height:14px; left:12%; animation-duration:11s;  animation-delay:1s;    bottom:-20px; }
+        .bubble:nth-child(3)  { width: 6px;  height:6px;  left:20%; animation-duration:9s;   animation-delay:2s;    bottom:-20px; }
+        .bubble:nth-child(4)  { width:18px;  height:18px; left:28%; animation-duration:13s;  animation-delay:0.5s;  bottom:-20px; }
+        .bubble:nth-child(5)  { width:10px;  height:10px; left:35%; animation-duration:10s;  animation-delay:3s;    bottom:-20px; }
+        .bubble:nth-child(6)  { width: 7px;  height:7px;  left:45%; animation-duration:7s;   animation-delay:1.5s;  bottom:-20px; }
+        .bubble:nth-child(7)  { width:22px;  height:22px; left:52%; animation-duration:14s;  animation-delay:2.5s;  bottom:-20px; }
+        .bubble:nth-child(8)  { width: 9px;  height:9px;  left:60%; animation-duration:9.5s; animation-delay:0.8s;  bottom:-20px; }
+        .bubble:nth-child(9)  { width:15px;  height:15px; left:68%; animation-duration:12s;  animation-delay:4s;    bottom:-20px; }
+        .bubble:nth-child(10) { width: 5px;  height:5px;  left:75%; animation-duration:8.5s; animation-delay:1.2s;  bottom:-20px; }
+        .bubble:nth-child(11) { width:20px;  height:20px; left:82%; animation-duration:15s;  animation-delay:3.5s;  bottom:-20px; }
+        .bubble:nth-child(12) { width:12px;  height:12px; left:90%; animation-duration:11s;  animation-delay:2s;    bottom:-20px; }
+        .bubble:nth-child(13) { width: 8px;  height:8px;  left:95%; animation-duration:7.5s; animation-delay:0.3s;  bottom:-20px; }
+        .bubble:nth-child(14) { width:16px;  height:16px; left:8%;  animation-duration:12.5s;animation-delay:5s;    bottom:-20px; }
+        .bubble:nth-child(15) { width:11px;  height:11px; left:40%; animation-duration:10.5s;animation-delay:1.8s;  bottom:-20px; }
+        .bubble:nth-child(16) { width: 6px;  height:6px;  left:55%; animation-duration:8s;   animation-delay:3.2s;  bottom:-20px; }
+        .bubble:nth-child(17) { width:25px;  height:25px; left:72%; animation-duration:16s;  animation-delay:2.8s;  bottom:-20px; }
+        .bubble:nth-child(18) { width: 9px;  height:9px;  left:18%; animation-duration:9s;   animation-delay:4.5s;  bottom:-20px; }
+        .bubble:nth-child(19) { width:13px;  height:13px; left:85%; animation-duration:11.5s;animation-delay:0.7s;  bottom:-20px; }
+        .bubble:nth-child(20) { width: 7px;  height:7px;  left:48%; animation-duration:8.8s; animation-delay:6s;    bottom:-20px; }
+
+        @keyframes bubble-rise {
+            0%   { transform: translateY(0) translateX(0) scale(1);     opacity: 0; }
+            10%  { opacity: 0.75; }
+            50%  { transform: translateY(-50vh) translateX(20px) scale(1.1); }
+            90%  { opacity: 0.25; }
+            100% { transform: translateY(-105vh) translateX(-12px) scale(0.8); opacity: 0; }
+        }
+
+        /* Hero content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 920px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.3);
+            border-radius: 50px;
+            padding: 0.4rem 1.3rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyan-light);
+            margin-bottom: 1.75rem;
+            animation: fade-in-down 0.9s ease 0.2s both;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { transform: scale(1); opacity: 1; }
+            50%      { transform: scale(1.6); opacity: 0.45; }
+        }
+
+        .hero-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.8rem, 9.5vw, 8.5rem);
+            line-height: 0.93;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.5rem;
+            animation: fade-in-up 1s ease 0.4s both;
+        }
+        .hero-title .line-1 { display: block; color: var(--white); }
+        .hero-title .line-2 {
+            display: block;
+            background: linear-gradient(90deg, var(--blue-bright), var(--cyan), var(--cyan-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-title .line-3 { display: block; color: rgba(240,249,255,0.8); }
+
+        .hero-subtitle {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: var(--white-dim);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            margin-bottom: 2.75rem;
+            animation: fade-in-up 1s ease 0.6s both;
+        }
+        .hero-subtitle span { color: var(--cyan-light); }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fade-in-up 1s ease 0.8s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.3rem;
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(6,182,212,0.4);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .btn-primary:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 10px 42px rgba(6,182,212,0.62); }
+        .btn-primary:hover::before { opacity: 1; }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.3rem;
+            background: transparent;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border: 1px solid rgba(6,182,212,0.4);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover {
+            transform: scale(1.05) translateY(-2px);
+            background: rgba(6,182,212,0.1);
+            border-color: var(--cyan);
+            box-shadow: 0 0 32px rgba(6,182,212,0.3);
+        }
+
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white-dim);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            animation: fade-in-up 1s ease 1.2s both;
+        }
+        .scroll-line {
+            width: 1px; height: 48px;
+            background: linear-gradient(180deg, var(--cyan), transparent);
+            animation: scroll-pulse 2s ease-in-out infinite;
+        }
+        @keyframes scroll-pulse {
+            0%,100% { transform: scaleY(1); opacity: 1; }
+            50%      { transform: scaleY(0.4); opacity: 0.4; }
+        }
+
+        /* ===== SECTION BASE ===== */
+        section { padding: 6rem 2rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-tag {
+            display: inline-block;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 0.65rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.6rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: 0.02em;
+            margin-bottom: 1.1rem;
+        }
+        .section-title span {
+            background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--white-dim);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 560px;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+        .reveal-delay-4 { transition-delay: 0.48s; }
+
+        /* ===== SERVICES SECTION ===== */
+        #services {
+            background: var(--navy-mid);
+            position: relative;
+            overflow: hidden;
+        }
+        #services::before,
+        #services::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+        #services::before { top: 0; }
+        #services::after  { bottom: 0; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .service-card:hover { transform: translateY(-9px); box-shadow: 0 22px 65px rgba(0,0,0,0.5), 0 0 45px rgba(6,182,212,0.15); border-color: rgba(6,182,212,0.4); }
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            width: 66px; height: 66px;
+            background: linear-gradient(135deg, rgba(3,105,161,0.3), rgba(6,182,212,0.2));
+            border: 1px solid rgba(6,182,212,0.3);
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover .service-icon { transform: scale(1.1) rotate(-6deg); box-shadow: 0 0 28px rgba(6,182,212,0.45); }
+
+        .service-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.65rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+        }
+        .service-card p { color: var(--white-dim); font-size: 0.94rem; line-height: 1.7; margin-bottom: 1.5rem; }
+
+        .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+        .service-features li { font-size: 0.85rem; color: var(--cyan-light); display: flex; align-items: center; gap: 0.5rem; }
+        .service-features li::before { content: '✓'; color: var(--cyan); font-weight: 700; }
+
+        .service-tag {
+            position: absolute;
+            top: 1.4rem; right: 1.4rem;
+            background: rgba(6,182,212,0.12);
+            border: 1px solid rgba(6,182,212,0.2);
+            border-radius: 50px;
+            padding: 0.22rem 0.75rem;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            letter-spacing: 0.04em;
+            font-weight: 500;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        #about { position: relative; overflow: hidden; }
+        #about::after {
+            content: 'JR';
+            position: absolute;
+            right: -2.5rem; top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26vw;
+            color: rgba(6,182,212,0.03);
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-content p {
+            color: var(--white-dim);
+            font-size: 1.02rem;
+            line-height: 1.85;
+            margin-bottom: 1.1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .stat-card:hover { border-color: rgba(6,182,212,0.4); transform: translateY(-3px); }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .stat-label { color: var(--white-dim); font-size: 0.78rem; margin-top: 0.25rem; letter-spacing: 0.04em; }
+
+        .about-visual { position: relative; }
+
+        .about-visual-main {
+            background: linear-gradient(135deg, var(--navy-light), var(--navy-mid));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-visual-main::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(6,182,212,0.05) 60deg, transparent 120deg);
+            animation: rotate-glow 9s linear infinite;
+        }
+        @keyframes rotate-glow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .about-icon-large { font-size: 5rem; margin-bottom: 1rem; }
+
+        .about-tagline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.1rem;
+            letter-spacing: 0.04em;
+        }
+        .about-tagline span { color: var(--cyan); }
+
+        .about-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem; }
+        .about-dots span {
+            width: 8px; height: 8px; border-radius: 50%; background: var(--cyan);
+            animation: dot-pulse 2s ease-in-out infinite;
+        }
+        .about-dots span:nth-child(2) { animation-delay: 0.3s; }
+        .about-dots span:nth-child(3) { animation-delay: 0.6s; }
+        @keyframes dot-pulse {
+            0%,100% { transform: scale(1); opacity: 0.5; }
+            50%      { transform: scale(1.5); opacity: 1; }
+        }
+
+        .about-badge-float {
+            position: absolute;
+            bottom: -1.2rem; right: -1.2rem;
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            border-radius: 16px;
+            padding: 1rem 1.6rem;
+            text-align: center;
+            box-shadow: 0 12px 35px rgba(6,182,212,0.45);
+        }
+        .about-badge-float .number { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: white; line-height: 1; }
+        .about-badge-float .label  { font-size: 0.7rem; color: rgba(255,255,255,0.8); }
+
+        /* ===== REVIEWS SECTION ===== */
+        #reviews {
+            background: var(--navy-mid);
+            position: relative;
+            overflow: hidden;
+        }
+        #reviews::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .reviews-header {
+            display: flex;
+            align-items: flex-end;
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .rating-big {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            flex-shrink: 0;
+        }
+        .rating-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4.2rem;
+            background: linear-gradient(90deg, var(--blue-bright), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        .rating-stars { font-size: 1.4rem; color: #fbbf24; letter-spacing: 0.1em; margin: 0.3rem 0; }
+        .rating-count { font-size: 0.78rem; color: var(--white-dim); }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+        }
+        .review-card:hover { transform: translateY(-5px); border-color: rgba(6,182,212,0.35); }
+
+        .review-quote {
+            position: absolute; top: 1.25rem; right: 1.5rem;
+            font-size: 3.5rem; color: rgba(6,182,212,0.14);
+            font-family: Georgia, serif; line-height: 1;
+        }
+        .review-stars { color: #fbbf24; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .review-text { color: var(--white-dim); font-size: 0.94rem; line-height: 1.72; margin-bottom: 1.5rem; }
+
+        .review-author { display: flex; align-items: center; gap: 0.75rem; }
+        .review-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem; color: white;
+            flex-shrink: 0;
+        }
+        .review-name { font-weight: 600; font-size: 0.95rem; }
+        .review-date { color: var(--white-dim); font-size: 0.78rem; }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact { position: relative; overflow: hidden; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3.5rem;
+        }
+
+        .contact-info { display: flex; flex-direction: column; gap: 1.6rem; }
+
+        .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+
+        .contact-item-icon {
+            width: 50px; height: 50px;
+            background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--cyan-light);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.25rem;
+        }
+        .contact-item-text p,
+        .contact-item-text a {
+            color: var(--white-dim);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-item-text a:hover { color: var(--cyan); }
+
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            height: 230px;
+            margin-top: 1rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .map-container iframe {
+            width: 100%; height: 100%;
+            filter: saturate(0.7) brightness(0.85) hue-rotate(180deg);
+        }
+
+        /* Contact form */
+        .contact-form {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.75rem;
+            backdrop-filter: blur(20px);
+        }
+        .contact-form h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.9rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.75rem;
+        }
+
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--cyan-light);
+            margin-bottom: 0.45rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(6,182,212,0.2);
+            border-radius: 12px;
+            padding: 0.9rem 1.2rem;
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(240,249,255,0.28); }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(6,182,212,0.1);
+        }
+        .form-group textarea { min-height: 135px; resize: vertical; }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.04em;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(6,182,212,0.3);
+        }
+        .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 42px rgba(6,182,212,0.55); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--navy-mid);
+            border-top: 1px solid rgba(6,182,212,0.1);
+            padding: 4rem 2.5rem 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3.5rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--white-dim);
+            font-size: 0.9rem;
+            line-height: 1.75;
+            margin-top: 1rem;
+            max-width: 290px;
+        }
+
+        .footer-logo {
+            display: flex; align-items: center; gap: 0.65rem;
+            text-decoration: none;
+        }
+        .footer-logo-icon {
+            width: 37px; height: 37px;
+            background: linear-gradient(135deg, var(--blue-bright), var(--cyan));
+            border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem; color: white;
+        }
+        .footer-logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.45rem;
+            letter-spacing: 0.04em;
+            color: var(--white);
+        }
+        .footer-logo-text span { color: var(--cyan); }
+
+        .footer-col h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1.25rem;
+        }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-col ul a {
+            color: var(--white-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .footer-col ul a:hover { color: var(--cyan); padding-left: 4px; }
+
+        .footer-bottom {
+            max-width: 1200px; margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom p { color: rgba(240,249,255,0.3); font-size: 0.8rem; }
+        .footer-bottom span { color: var(--cyan); }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 960px) {
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .footer-grid   { grid-template-columns: 1fr 1fr; }
+            .footer-brand  { grid-column: 1 / -1; }
+            .reviews-header { flex-direction: column; align-items: flex-start; }
+        }
+
+        @media (max-width: 680px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 100%; left: 0; right: 0;
+                flex-direction: column; gap: 0;
+                background: rgba(4,9,26,0.96);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid var(--glass-border);
+                padding: 0.75rem 0;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { display: block; padding: 0.85rem 1.5rem; }
+            .nav-links a::after { display: none; }
+            .nav-toggle { display: flex; }
+            section { padding: 4rem 1.25rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .about-badge-float { bottom: -0.5rem; right: -0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <a href="#home" class="nav-logo">
+            <div class="nav-logo-icon">JR</div>
+            <span class="nav-logo-text">JR <span>Car Wash</span></span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home">
+        <div class="hero-bg"></div>
+        <div class="foam-overlay"></div>
+
+        <div class="spray-wrap">
+            <div class="spray-beam"></div>
+            <div class="spray-beam"></div>
+            <div class="spray-beam"></div>
+        </div>
+
+        <div class="bubbles-container">
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+            <div class="bubble"></div><div class="bubble"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">✦ Bloemfontein's Premier Car Wash</div>
+            <h1 class="hero-title">
+                <span class="line-1">Premium</span>
+                <span class="line-2">Car Wash</span>
+                <span class="line-3">Experience</span>
+            </h1>
+            <p class="hero-subtitle">
+                Fast, Reliable, Professional Cleaning &nbsp;·&nbsp;
+                <span>Reizis Square, Noordhoek</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    <span>✦</span> Book Now
+                </a>
+                <a href="tel:0826942145" class="btn-secondary">
+                    <span>📞</span> Call Now (082 694 2145)
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES SECTION ===== -->
+    <section id="services">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-tag">What We Offer</span>
+                <h2 class="section-title">Our <span>Services</span></h2>
+                <p class="section-subtitle">Professional cleaning packages designed to keep your vehicle looking its absolute best.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <span class="service-tag">Most Popular</span>
+                    <div class="service-icon">💧</div>
+                    <h3>Exterior Wash</h3>
+                    <p>A thorough exterior clean that removes dirt, grime, and contaminants — leaving your paintwork gleaming with a showroom finish.</p>
+                    <ul class="service-features">
+                        <li>Full body foam wash</li>
+                        <li>Rim &amp; wheel cleaning</li>
+                        <li>Window &amp; mirror polish</li>
+                        <li>Spot-free rinse &amp; dry</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="service-icon">🪑</div>
+                    <h3>Interior Cleaning</h3>
+                    <p>Deep interior clean that refreshes every surface inside your vehicle — from dashboard to carpets, leaving it fresh and spotless.</p>
+                    <ul class="service-features">
+                        <li>Vacuum &amp; carpet shampoo</li>
+                        <li>Dashboard &amp; console wipe</li>
+                        <li>Seat &amp; upholstery clean</li>
+                        <li>Air freshener treatment</li>
+                    </ul>
+                </div>
+
+                <div class="service-card reveal reveal-delay-3">
+                    <span class="service-tag">Premium</span>
+                    <div class="service-icon">⭐</div>
+                    <h3>Full Valet</h3>
+                    <p>Our ultimate package — a complete interior and exterior transformation that makes your vehicle look brand new from every angle.</p>
+                    <ul class="service-features">
+                        <li>Complete exterior wash &amp; polish</li>
+                        <li>Full interior deep clean</li>
+                        <li>Tyre dressing &amp; shine</li>
+                        <li>Protective wax coating</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="reveal">
+                        <span class="section-tag">Who We Are</span>
+                        <h2 class="section-title">Quality You Can <span>Trust</span></h2>
+                    </div>
+                    <div class="reveal reveal-delay-1">
+                        <p>At JR Car Wash, we believe every vehicle deserves the finest care. Located in the heart of Bloemfontein at Reizis Square, Torbet Street, Noordhoek, we've built our reputation on delivering exceptional cleaning results with a personal touch.</p>
+                        <p>Our team of experienced professionals uses premium products and proven techniques to ensure your car leaves our facility cleaner than ever. We take pride in every vehicle we wash — your satisfaction is our guarantee.</p>
+                    </div>
+                    <div class="about-stats reveal reveal-delay-2">
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Cars Washed Monthly</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">4.4★</div>
+                            <div class="stat-label">Customer Rating</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Service Packages</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Satisfaction Focus</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-visual reveal reveal-delay-2">
+                    <div class="about-visual-main">
+                        <div class="about-icon-large">🚗</div>
+                        <div class="about-tagline">Clean Car,<br><span>Clear Mind.</span></div>
+                        <div class="about-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="about-badge-float">
+                        <div class="number">BFN</div>
+                        <div class="label">Bloemfontein</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS SECTION ===== -->
+    <section id="reviews">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-tag">Customer Feedback</span>
+                <h2 class="section-title">What People <span>Say</span></h2>
+            </div>
+
+            <div class="reviews-header reveal reveal-delay-1">
+                <div class="rating-big">
+                    <div class="rating-number">4.4</div>
+                    <div class="rating-stars">★★★★☆</div>
+                    <div class="rating-count">Based on Google Reviews</div>
+                </div>
+                <p style="color:var(--white-dim);font-size:1.02rem;line-height:1.75;max-width:500px;">
+                    Our customers love the results. We're committed to earning every star with each vehicle we clean at our Bloemfontein location.
+                </p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card reveal reveal-delay-1">
+                    <div class="review-quote">"</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Absolutely fantastic service! My car looked brand new after the full valet. The team was professional, thorough and fast. Will definitely be coming back every month!</p>
+                    <div class="review-author">
+                        <div class="review-avatar">TM</div>
+                        <div>
+                            <div class="review-name">Thabo M.</div>
+                            <div class="review-date">2 weeks ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card reveal reveal-delay-2">
+                    <div class="review-quote">"</div>
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">Best car wash in Bloemfontein hands down. Reasonable prices, great quality and they really pay attention to detail. The interior cleaning was spotless!</p>
+                    <div class="review-author">
+                        <div class="review-avatar">SV</div>
+                        <div>
+                            <div class="review-name">Sarah V.</div>
+                            <div class="review-date">1 month ago</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card reveal reveal-delay-3">
+                    <div class="review-quote">"</div>
+                    <div class="review-stars">★★★★☆</div>
+                    <p class="review-text">Really impressed with the exterior wash. The rims came out gleaming and the whole car had a beautiful shine. Convenient location at Reizis Square too.</p>
+                    <div class="review-author">
+                        <div class="review-avatar">KD</div>
+                        <div>
+                            <div class="review-name">Karabo D.</div>
+                            <div class="review-date">3 weeks ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact">
+        <div class="container">
+            <div class="reveal">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Visit or <span>Contact Us</span></h2>
+                <p class="section-subtitle">We're conveniently located at Reizis Square in Noordhoek, Bloemfontein. Come in or send us a message.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal reveal-delay-1">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h4>Address</h4>
+                            <p>Reizis Square, Torbet St<br>Noordhoek, Bloemfontein<br>South Africa</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-item-text">
+                            <h4>Phone</h4>
+                            <a href="tel:0826942145">082 694 2145</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">🕐</div>
+                        <div class="contact-item-text">
+                            <h4>Operating Hours</h4>
+                            <p>Mon – Sat: 7:00 AM – 6:00 PM<br>Sunday: 8:00 AM – 4:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.0!2d26.2053!3d-29.1217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e8ffb6f9c2e1d1d%3A0x5b1234abcdef!2sReizis%20Square%2C%20Torbet%20St%2C%20Noordhoek%2C%20Bloemfontein%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1710000000000"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="JR Car Wash Location — Reizis Square, Bloemfontein">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal reveal-delay-2">
+                    <h3>Send Us a Message</h3>
+                    <form id="contact-form" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. John Smith" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="e.g. 082 000 0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <input type="text" id="service" name="service" placeholder="e.g. Full Valet, Exterior Wash...">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Message &nbsp;✦</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="footer-logo">
+                    <div class="footer-logo-icon">JR</div>
+                    <span class="footer-logo-text">JR <span>Car Wash</span></span>
+                </a>
+                <p>Bloemfontein's trusted car wash, delivering premium cleaning with professional care at Reizis Square, Noordhoek.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:0826942145">082 694 2145</a></li>
+                    <li><a href="#contact">Reizis Square</a></li>
+                    <li><a href="#contact">Torbet St, Noordhoek</a></li>
+                    <li><a href="#contact">Bloemfontein, SA</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 <span>JR Car Wash</span>. All rights reserved.</p>
+            <p>Reizis Square &middot; Torbet St &middot; Noordhoek &middot; Bloemfontein</p>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ─── NAV SCROLL EFFECT ───────────────────────────────────────
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        });
+
+        // ─── MOBILE MENU TOGGLE ──────────────────────────────────────
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks  = document.getElementById('nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('open'));
+        });
+
+        // ─── SCROLL REVEAL (IntersectionObserver) ────────────────────
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer  = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealEls.forEach(el => observer.observe(el));
+
+        // ─── ACTIVE NAV HIGHLIGHT ON SCROLL ──────────────────────────
+        const sections   = document.querySelectorAll('section[id]');
+        const navAnchors = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.scrollY >= section.offsetTop - 220) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navAnchors.forEach(a => {
+                a.style.color = '';
+                if (a.getAttribute('href') === '#' + current) {
+                    a.style.color = 'var(--cyan)';
+                }
+            });
+        });
+
+        // ─── CONTACT FORM SUBMIT ──────────────────────────────────────
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn      = e.target.querySelector('.form-submit');
+            const original = btn.textContent;
+            btn.textContent = 'Message Sent! ✓';
+            btn.style.background = 'linear-gradient(135deg, #059669, #10b981)';
+            btn.style.boxShadow  = '0 4px 20px rgba(16,185,129,0.4)';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent     = original;
+                btn.style.background = '';
+                btn.style.boxShadow  = '';
+                btn.disabled = false;
+                e.target.reset();
+            }, 3500);
+        }
+    </script>
+
+</body>
+</html>
